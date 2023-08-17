@@ -1,0 +1,27 @@
+﻿@model StoreProject.Models.Space
+    
+
+@using (Ajax.BeginForm("Split", "Space", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "def", OnSuccess = "editspacecount()" }))
+
+{
+
+    <div class="form-horizontal">
+        <h4>Space</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Space_Id)
+
+        <div class="form-group">
+            New Spaces Count
+            <div class="col-md-10">
+                <input type="number" name="No" value="2" min="1" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input onclick = "EditSpaceCount()" type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

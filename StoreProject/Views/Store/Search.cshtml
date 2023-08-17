@@ -1,0 +1,42 @@
+﻿@model IEnumerable<StoreProject.Models.Store>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Store_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsMain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsInvoiceDirect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Store_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsMain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsInvoiceDirect)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+    </tr>
+}
+
+</table>

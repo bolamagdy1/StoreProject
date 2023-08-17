@@ -1,0 +1,33 @@
+﻿@model  StoreProject.Models.Space
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<h3>@Model.Space_Name</h3>
+<table class="table">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Count
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Products) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Ajax.ActionLink("Move to", "Move", "Product", new { id = item.Product_Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "mo", OnSuccess = "MoveTo()" }, new { @class = "btn btn-outline-primary" })
+
+        </td>
+    </tr>
+}
+
+</table>

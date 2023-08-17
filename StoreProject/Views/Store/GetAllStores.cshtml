@@ -1,0 +1,45 @@
+﻿@model IEnumerable<StoreProject.Models.Store>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Store_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsMain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsInvoiceDirect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Store_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsMain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsInvoiceDirect)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Ajax.ActionLink("Edit", "Edit", "Store", new { id = item.Store_Id }, new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ed", OnSuccess = "DoneEdit()" }, new { @class = "btn btn-outline-primary" }) |
+            <a class="btn btn-outline-success" href="@Url.Action("Index", "Space", new { id = item.Store_Id })">Store Spaces</a> |
+            @Ajax.ActionLink("Delete", "Delete", "Store", new { id = item.Store_Id }, new AjaxOptions { HttpMethod = "Post", Confirm = "Are you sure you want to delete this Store?", InsertionMode = InsertionMode.Replace, UpdateTargetId = "abc" }, new { @class = "btn btn-outline-danger" })
+        </td>
+    </tr>
+}
+
+</table>

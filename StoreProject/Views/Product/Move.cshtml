@@ -1,0 +1,22 @@
+﻿@model StoreProject.Models.Product
+
+@using (Ajax.BeginForm("Move", "Product", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ghi", OnSuccess = "moveto()" }))
+
+{
+    <div>
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.CountryId, "CountryId", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                <input type="number" name="moved" value="@Model.Product_Id" hidden />
+                @Html.DropDownListFor(c => c.Space_Id, ViewBag.spaces as SelectList, new { @class = "form-select" })
+                @*@Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input onclick="MoveTo()" type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}

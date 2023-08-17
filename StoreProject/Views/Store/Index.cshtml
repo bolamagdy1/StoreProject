@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Home</h2>
+<!-- Button trigger modal -->
+<button style="float:right;border-radius:50%" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+    <i class="fa-solid fa-plus fa-xl"></i>
+</button>
+<br />
+<form method="post" asp-controller="Store" asp-action="Search">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Store Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Store Name">
+    </div><br />
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="ismain" name="ismain">
+        <label class="form-check-label" for="ismain">In Main</label>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="isinvoice" id="isinvoice">
+        <label class="form-check-label" for="isinvoice">Is Invoice Direct</label>
+    </div><br />
+    <button type="submit" formmethod="post" formaction="@Url.Action("Search", "Store")" class="btn btn-primary">Search</button>
+</form>
+<br /><br />
+<div id="abc">
+    @Html.Action("GetAllStores")
+</div>
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Store</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Action("Create")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Store</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="ed">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Details Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Details of Store</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="de">
+                ....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptRegion
+    {
+    <script>
+        function DoneCreate() {
+            $("#createModal").modal("toggle");
+        }
+        function DoneEdit() {
+            $("#editModal").modal("toggle");
+        }
+        function DoneDetails() {
+            $("#detailsModal").modal("toggle");
+        }
+    </script>
+}
